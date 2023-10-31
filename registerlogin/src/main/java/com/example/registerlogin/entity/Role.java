@@ -1,4 +1,4 @@
-package entity;
+package com.example.registerlogin.entity;
 
 
 import jakarta.persistence.*;
