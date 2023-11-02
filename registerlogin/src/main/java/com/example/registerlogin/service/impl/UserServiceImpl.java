@@ -6,6 +6,7 @@ import com.example.registerlogin.entity.User;
 import com.example.registerlogin.repository.RoleRepository;
 import com.example.registerlogin.repository.UserRepository;
 import com.example.registerlogin.service.UserService;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,21 +20,25 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
+
     public UserServiceImpl(UserRepository userRepository,
                            RoleRepository roleRepository,
-                           PasswordEncoder passwordEncoder) {
+                           PasswordEncoder passwordEncoder
+                           ) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+
     }
 
     @Override
-    public void saveUser(UserDto userdto){
+    public void saveUser(UserDto userDto){
         User user = new User();
-        user.setName(userdto.getFirstName() + " " + userdto.getLastName());
+        user.setName(userDto.getFirstName() + " " + userDto.getLastName());
         user.setEmail(user.getEmail());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
-        user.setPassword(passwordEncoder.encode(userdto.getPassword()));
+
 
         Role role = roleRepository.findByName("ROLE_ADMIN");
         if (role == null){
