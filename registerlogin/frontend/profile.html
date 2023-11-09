@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles_profile.css">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    />
+    <title>Profil</title>
+</head>
+<body>
+    <div class="container">
+        <div class="side-box">
+            <nav>
+                <a onclick="tabs(0)" class="tab activate"><i class='bx bxs-user-circle'></i></a>
+                <a onclick="tabs(1)" class="tab"><i class='bx bxs-credit-card'></i></a>
+                <a onclick="tabs(2)" class="tab"><i class='bx bx-check-double'></i></a>
+                <a onclick="tabs(3)" class="tab"><i class='bx bxs-cart'></i></a>
+            </nav>
+        </div>
+        <div class="main-box">
+            <div class="profile tabShow">
+                <h1>Személyes adatok</h1>
+                <h2>Név</h2>
+                <input type="name" name="name" id="name" placeholder="Név" required>
+
+                <h2>Email cím</h2>
+                <input type="email" name="email" id="email" placeholder="Email" required>
+
+                <h2>Születési Dátum</h2>
+                <input type="date" name="date" id="date" required>
+
+                <h2>Jelszó</h2>
+                <input type="password" name="password" id="password" placeholder="Jelszó" required>
+
+                <button class="btn">
+                    Frissítés
+                </button>
+            </div>
+            <div class="payment tabShow">
+                <h1>Fizetési adatok</h1>
+                <h2>Bank neve</h2>
+                <input type="name" name="name" id="name" placeholder="pl.: OTP bank" required>
+
+                <h2>Bankkártya száma</h2>
+                <input type="cardnumber" name="cardnumber" id="cardnumber" placeholder="pl.: 12345678-12345678" required>
+
+                <h2>Kártyán szereplő név</h2>
+                <input type="name" name="name" id="name" placeholder="pl.: Kiss András" required>
+
+                <h2>CVC kód</h2>
+                <input type="password" name="cvc" id="cvc" placeholder="123" required>
+
+                <h2>Számlázási cím</h2>
+                <input type="address" name="address" id="address" placeholder="5000 Szolnok valamilyen u. 12" required>
+
+                <button class="btn">
+                    Frissítés
+                </button>
+            </div>
+            <div class="privacy tabShow">
+                <h1>Adatvédelmi Tájékoztató</h1>
+                <a href="aszf.pdf">ÁSZF</a>
+                <a href="hozzajarulasi_nyilatkozat.pdf">Hozzájátulási Nyilatkozat</a>
+                <a href="adatvedelem.pdf">Adatvédelmi tályékoztazó</a>
+            </div>
+            <div class="cart tabShow">
+                <h1>Korábbi rendelések</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rendelés napja</th>
+                            <th>Rendelt termék</th>
+                            <th>Végösszeg</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2020.02.20</td>
+                            <td>Női városi bicikli</td>
+                            <td>3000ft</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        const tabBtn = document.querySelectorAll(".tab");
+        const tab = document.querySelectorAll(".tabShow");
+        function tabs(panelIndex){
+            tab.forEach(function(node){
+                node.style.display = "none";
+            });
+            tab[panelIndex].style.display = "block";
+        }
+        tabs(0);
+    </script>
+    <script>
+        $(".tabs").click(function(){
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+    </script>
+</body>
+</html>
