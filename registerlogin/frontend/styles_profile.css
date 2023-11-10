@@ -136,3 +136,7 @@ thead {
     font-weight: 600;
     text-transform: uppercase;
 }
+
+ol {
+    padding: 10px 10px 10px 30px;
+}

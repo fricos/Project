@@ -8,7 +8,7 @@
 }
 
 body {
-    background: rgb(200, 200, 200);
+    background: linear-gradient(to right,#2ed573,#f9ca24);
     display: flex;
     width: 100%;
 }
@@ -89,13 +89,13 @@ body {
 }
 
 .values .val-box:nth-child(1) i {
-    background: chartreuse;
+    background: khaki;
 } .values .val-box:nth-child(2) i {
     background: lightblue;
 } .values .val-box:nth-child(3) i {
     background: lightcoral;
 } .values .val-box:nth-child(4) i {
-    background: khaki;
+    background: chartreuse;
 }
 
 .values .val-box h3 {
