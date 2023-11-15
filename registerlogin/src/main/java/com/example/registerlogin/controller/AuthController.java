@@ -1,22 +1,23 @@
 package com.example.registerlogin.controller;
 
-import ch.qos.logback.core.model.Model;
 import com.example.registerlogin.dto.UserDto;
 import com.example.registerlogin.entity.User;
 import com.example.registerlogin.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
 public class AuthController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public AuthController(UserService userService) {
         this.userService = userService;
@@ -33,11 +34,10 @@ public class AuthController {
     }
 
     @GetMapping("/register")
-    @ModelAttribute("user")
-    public String showRegistrationForm(Model model) {
-        UserDto user = new UserDto();
-        model.addAtribute("user", user);
-        return "register";
+    public ModelAndView showRegistrationForm() {
+        ModelAndView modelAndView = new ModelAndView("register");
+        modelAndView.addObject("user", new UserDto());
+        return modelAndView;
     }
 
     @PostMapping("register/save")
@@ -51,8 +51,8 @@ public class AuthController {
         }
 
         if(result.hasErrors()){
-            model.addAtribute("user", userDto);
-            return "/register";
+            model.addAttribute("user", userDto);
+            return "register";
         }
 
         userService.saveUser(userDto);
@@ -61,10 +61,12 @@ public class AuthController {
     }
 
     @GetMapping("/users")
-    public String users(Model model) {
+    public ModelAndView users() {
         List<UserDto> users = userService.findAllUsers();
-        model.addAtribute("users", users);
-        return "users";
+        ModelAndView modelAndView = new ModelAndView("users");
+        modelAndView.addObject("users", users);
+        return modelAndView;
     }
+
 
 }
