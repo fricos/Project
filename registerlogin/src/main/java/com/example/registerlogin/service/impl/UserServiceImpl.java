@@ -7,6 +7,7 @@ import com.example.registerlogin.repository.RoleRepository;
 import com.example.registerlogin.repository.UserRepository;
 import com.example.registerlogin.service.UserService;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Configuration
 @Service
 @Lazy
 public class UserServiceImpl implements UserService {

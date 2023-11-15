@@ -13,7 +13,7 @@ public class RegisterloginApplication {
 
 	@GetMapping("/root")
 	public String apiRoot() {
-		return "../registerlogin/frontend/login.hmtl";
+		return "../login.html";
 	}
 
 }
