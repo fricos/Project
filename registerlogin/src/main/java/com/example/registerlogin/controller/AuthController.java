@@ -17,7 +17,7 @@ import java.util.List;
 @Controller
 public class AuthController {
 
-    private final UserService userService;
+    private UserService userService;
 
     public AuthController(UserService userService) {
         this.userService = userService;

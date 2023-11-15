@@ -6,7 +6,8 @@ import com.example.registerlogin.entity.User;
 import com.example.registerlogin.repository.RoleRepository;
 import com.example.registerlogin.repository.UserRepository;
 import com.example.registerlogin.service.UserService;
-
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Lazy
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -27,7 +29,7 @@ public class UserServiceImpl implements UserService {
                            ) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
+        this.setPasswordEncoder(passwordEncoder);
 
     }
 
@@ -36,7 +38,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(userDto.getFirstName() + " " + userDto.getLastName());
         user.setEmail(user.getEmail());
-        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setPassword(getPasswordEncoder().encode(userDto.getPassword()));
 
 
 
@@ -56,7 +58,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> findAllUsers(){
         List<User> users = userRepository.findAll();
-        return users.stream().map((user) -> mapToUserDto(user)).collect(Collectors.toList());
+        return users.stream().map(this::mapToUserDto).collect(Collectors.toList());
     }
 
     private UserDto mapToUserDto(User user){
@@ -72,5 +74,15 @@ public class UserServiceImpl implements UserService {
         Role role = new Role();
         role.setName("ROLE_ADMIN");
         return roleRepository.save(role);
+    }
+
+
+    @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return passwordEncoder;
+    }
+
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
     }
 }
