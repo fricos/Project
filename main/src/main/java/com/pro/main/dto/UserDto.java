@@ -20,7 +20,6 @@ public class UserDto
     @NotEmpty
     private String lastName;
     @NotEmpty(message = "Az Email cím nem lehet üres!")
-    @Email
     private String email;
     @NotEmpty(message = "A jelszó nem lehet üres!")
     private String password;
