@@ -1,4 +1,10 @@
 # Project
-kerékpár kölcsöntő
+kerékpár kölcsönző iskolai évvégi projekt
 
-10.02 
+kezdete: 10.02 
+
+backend java springboot
+
+frontend thymeleaf html css
+
+db mysql
