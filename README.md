@@ -1,10 +1,7 @@
-# Project
-kerékpár kölcsönző iskolai évvégi projekt
+# Projekt tartalma
 
-kezdete: 10.02 
-
-backend java springboot
-
-frontend thymeleaf html css
-
-db mysql
+- [x] Kerekegyensúly
+- [ ] Varga Márk, Munkácsi Gergő, Sinkó Kristóf
+- [ ] Projekt célja egy bicikli/elektromos roller kölcsönző ahol az emberek tudnak a kölcsönzés mellett túraútvonalakat választani
+- [ ] Fejlesztői eszközeink Discord, GitHub.
+- [ ] Java, HTML, CSS, JavaScript.
