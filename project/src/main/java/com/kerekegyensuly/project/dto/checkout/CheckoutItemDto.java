@@ -9,9 +9,9 @@ public class CheckoutItemDto {
 
     public CheckoutItemDto(){}
 
-    public CheckoutItemDto(String productName, int qunatity, double price, int userId){
+    public CheckoutItemDto(String productName, int quantity, double price, long productId, int userId){
         this.productName = productName;
-        this.quantity = qunatity;
+        this.quantity = quantity;
         this.price = price;
         this.productId = productId;
         this.userId = userId;

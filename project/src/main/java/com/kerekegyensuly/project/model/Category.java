@@ -3,6 +3,7 @@ package com.kerekegyensuly.project.model;
 import jakarta.persistence.*;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 
 @Entity
@@ -18,16 +19,24 @@ public class Category {
     @Column(name = "image_url")
     private @NotBlank String imageUrl;
 
-    public Integer getId() {
-        return id;
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    Set<Product> products;
+
+    public Category(){}
+
+    public Category(@NotBlank String categoryName, @NotBlank String description){
+        this.categoryName = categoryName;
+        this.description = description;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Category(@NotBlank String categoryName, @NotBlank String description, @NotBlank String imageUrl) {
+        this.categoryName = categoryName;
+        this.description = description;
+        this.imageUrl = imageUrl;
     }
-
     public String getCategoryName() {
-        return categoryName;
+        return this.categoryName;
     }
 
     public void setCategoryName(String categoryName) {
@@ -42,11 +51,32 @@ public class Category {
         this.description = description;
     }
 
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return "User {category id=" + id + ", category name='" + categoryName + "', description='" + description + "'}";
+    }
+
     public String getImageUrl() {
         return imageUrl;
     }
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

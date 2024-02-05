@@ -1,5 +1,8 @@
 package com.kerekegyensuly.project.dto.cart;
 
+import com.kerekegyensuly.project.model.Cart;
+import com.kerekegyensuly.project.model.Product;
+
 import javax.validation.constraints.NotNull;
 
 public class CartItemDto {
@@ -7,7 +10,7 @@ public class CartItemDto {
     private @NotNull Integer quantity;
     private @NotNull Product product;
 
-    Public CartItemDto(){
+    public CartItemDto(){
     }
 
     public CartItemDto(Cart cart){
