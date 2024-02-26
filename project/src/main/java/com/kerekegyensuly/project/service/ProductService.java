@@ -1,6 +1,7 @@
 package com.kerekegyensuly.project.service;
 
 import com.kerekegyensuly.project.dto.product.ProductDto;
+import com.kerekegyensuly.project.exceptions.ProductNotExistException;
 import com.kerekegyensuly.project.model.Category;
 import com.kerekegyensuly.project.model.Product;
 import com.kerekegyensuly.project.repository.ProductRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -37,5 +39,18 @@ public class ProductService {
     public void addProduct(ProductDto productDto, Category category){
         Product product = getProductFromDto(productDto,category);
         productRepository.save(product);
+    }
+    public void updateProduct(Integer productID, ProductDto productDto, Category category) {
+        Product product = getProductFromDto(productDto, category);
+        product.setId(productID);
+        productRepository.save(product);
+    }
+
+
+    public Product getProductById(Integer productId) throws ProductNotExistException {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        if (!optionalProduct.isPresent())
+            throw new ProductNotExistException("Product id is invalid " + productId);
+        return optionalProduct.get();
     }
 }
